@@ -1,0 +1,52 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  name: wordpress-mysql-service
+spec: 
+  ports: 
+    - 
+      name: mysql
+      port: 3306
+      protocol: TCP
+  selector: 
+    app: wordpress-mysql
+
+--- 
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: wordpress-mysql
+spec: 
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: wordpress-mysql
+    spec: 
+      containers: 
+        - 
+          env: 
+            - 
+              name: MYSQL_ROOT_PASSWORD
+              value: root_password
+            - 
+              name: MYSQL_DATABASE
+              value: wordpress-database
+          image: "mysql:5.7"
+          name: cont-wordpress-mysql
+          ports: 
+            - 
+              containerPort: 3306
+              name: mysql
+              protocol: TCP
+          volumeMounts: 
+            - 
+              mountPath: /var/lib/mysql
+              name: vol-wordpress
+              subPath: dbdata
+      volumes: 
+        - 
+          name: vol-wordpress
+          persistentVolumeClaim: 
+            claimName: wordpress-pvc-mysql
