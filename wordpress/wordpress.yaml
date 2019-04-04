@@ -20,7 +20,7 @@ metadata:
     app: wordpress
   name: wordpress
 spec: 
-  replicas: 1
+  replicas: 3
   template: 
     metadata: 
       labels: 
@@ -42,19 +42,6 @@ spec:
           ports: 
             - 
               containerPort: 80
-          volumeMounts:
-          - mountPath: /var/www/html/modules
-            name: vol-wordpress
-            subPath: modules
-          - mountPath: /var/www/html/profiles
-            name: vol-wordpress
-            subPath: profiles
-          - mountPath: /var/www/html/sites
-            name: vol-wordpress
-            subPath: sites
-          - mountPath: /var/www/html/themes
-            name: vol-wordpress
-            subPath: themes
       volumes:
         - 
           name: vol-wordpress
