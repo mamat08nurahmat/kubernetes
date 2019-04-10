@@ -91,6 +91,11 @@ kubectl config view
 SXo12vLceoUgcF78rMJGDxPiVLf4zkqj
 **ip_master:52.13.36.28
 
+#get token
+kubectl -n kube-system get secret
+kubectl -n kube-system describe secret deployment-controller-token-XXXXX
+
+
 https://api.k8s.sdcilsy-charlie.web.id
 
 user admin
