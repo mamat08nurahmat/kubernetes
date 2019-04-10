@@ -66,9 +66,11 @@ EOF
 **kops delete cluster --name k8s.sdcilsy-charlie.web.id --yes
 
 #pointing ip public master kubernetes ke server yang kitagunakan 
-sudo nano /etc/hosts
 ip_master_cluster api.nama_cluster
-54.202.143.245 api.k8s.sdcilsy-charlie.web.id
+
+sudo bash -c 'cat << EOF >> /etc/hosts
+34.221.19.77 api.k8s.sdcilsy-charlie.web.id
+EOF'
 
 Suggestions:
  * validate cluster: kops validate cluster
