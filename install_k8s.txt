@@ -42,12 +42,15 @@ sudo mv kops-linux-amd64 /usr/local/bin/kops
 
 
 #STEP_4 ::#Clustering Kubernetes ::???::--> kops create cluster--help
- 
-  export KOPS_STATE_STORE="s3://s3-003.sdcilsy-charlie.web.id"
+
+cat >> .bashrc<<EOF
+  export KOPS_STATE_STORE="s3://s3-004.sdcilsy-charlie.web.id"
   export KOPS_CLUSTER_NAME=k8s.sdcilsy-charlie.web.id  
   export NODE_SIZE=${NODE_SIZE:-t2.medium}
   export MASTER_SIZE=${MASTER_SIZE:-t2.medium}
   export ZONES=${ZONES:-"us-west-2a"}
+EOF
+
   
   kops create cluster  \
   --node-count 4 \
